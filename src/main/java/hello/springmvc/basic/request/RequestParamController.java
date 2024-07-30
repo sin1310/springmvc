@@ -22,6 +22,7 @@ public class RequestParamController {
         String username = request.getParameter("username");
         int age = Integer.parseInt(request.getParameter("age"));
 
+        log.info("username={}", username);
 
         response.getWriter().write("ok");
     }
@@ -56,7 +57,7 @@ public class RequestParamController {
     @ResponseBody
     @RequestMapping("/request-param-required")
     public String requestParamRequired(
-            @RequestParam(required = true) String username,
+            @RequestParam String username,
             @RequestParam(required = false) Integer age) {
 
         log.info("username={}, age={}", username, age);
@@ -66,7 +67,7 @@ public class RequestParamController {
     @ResponseBody
     @RequestMapping("/request-param-default")
     public String requestParamDefault(
-            @RequestParam(required = true, defaultValue = "guest") String username,
+            @RequestParam(defaultValue = "guest") String username,
             @RequestParam(required = false, defaultValue = "-1") int age) {
 
         log.info("username={}, age={}", username, age);
